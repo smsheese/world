@@ -1,36 +1,10 @@
 <?php
 
-namespace Nnjeim\World\Tests;
+namespace Tests;
 
-use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+abstract class TestCase extends BaseTestCase
 {
-	public function setUp(): void
-	{
-		parent::setUp();
-	}
-
-	/**
-	 * Define environment setup.
-	 *
-	 * @param  Application  $app
-	 * @return void
-	 */
-	protected function defineEnvironment($app)
-	{
-		$app->useEnvironmentPath(__DIR__ . '/../../..');
-		$app->bootstrapWith([LoadEnvironmentVariables::class]);
-		parent::getEnvironmentSetUp($app);
-
-		$app['config']->set('database.default', 'mysql');
-		$app['config']->set('database.connections.mysql', [
-			'driver' => 'mysql',
-			'host' => env('DB_HOST'),
-			'database' => env('DB_DATABASE'),
-			'username' => env('DB_USERNAME'),
-			'password' => env('DB_PASSWORD'),
-		]);
-	}
+    //
 }
